@@ -1,29 +1,28 @@
-# Image Recognition API in Go using TensorFlow
+## Image creation using tensorflow
+This repository contains a Go-based image recognition service powered by TensorFlow. It provides a simple HTTP API for classifying images using a pre-trained deep learning model.  
 
-<p align="center">
-  <img src="./cover.jpg"/>
-</p>
+## Getting Started  
 
-This is the underlying code for article [Build an Image Recognition API with Go and TensorFlow](https://outcrawl.com/image-recognition-api-go-tensorflow).
-
-## Running the service
-
-Build the image.
-
-```
-$ docker build -t localhost/recognition .
+### Building the Docker Image  
+Build the image using the following command:  
+```bash
+docker build -t localhost/recognition .
 ```
 
-Run service in a container.
-
+### Running the Service  
+Start the service in a Docker container:  
+```bash
+docker run -p 8080:8080 --rm localhost/recognition
 ```
-$ docker run -p 8080:8080 --rm localhost/recognition
+
+### Using the API  
+Send an image for classification via a POST request:  
+```bash
+curl localhost:8080/recognize -F 'image=@./cat.jpg'
 ```
 
-Call the service.
-
-```
-$ curl localhost:8080/recognize -F 'image=@./cat.jpg'
+Example response:  
+```json
 {
   "filename": "cat.jpg",
   "labels": [
@@ -35,3 +34,9 @@ $ curl localhost:8080/recognize -F 'image=@./cat.jpg'
   ]
 }
 ```
+
+## Implementation Details  
+This service was developed as part of the tutorial *Build an Image Recognition API with Go and TensorFlow*. It demonstrates how to integrate TensorFlow's machine learning capabilities into a Go application, exposing them through a RESTful endpoint.
+
+## License  
+MIT License
